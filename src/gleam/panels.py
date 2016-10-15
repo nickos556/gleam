@@ -73,7 +73,8 @@ class PlotPanel(Panel):
     template_name = "plot.html"
     width = 700
     height = 500
-    plotter = "ggplot"
+    #plotter = "ggplot"
+    plotter = "matplotlib"
     extension = "png"
     name = "plot"
 

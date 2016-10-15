@@ -3,8 +3,7 @@ from collections import OrderedDict
 
 from flask import Flask
 from wtforms import fields
-from ggplot import (aes, stat_smooth, geom_point, geom_text, ggtitle, ggplot,
-                    xlab, ylab)
+from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -56,13 +55,9 @@ class DataScatter(panels.PlotPanel):
             return
 
         subdat = self.dat[self.dat.Year == inputs.year]
-        p = ggplot(subdat, aes(x=inputs.xvar, y=inputs.yvar))
 
-        p = p + geom_point()
-        if inputs.shownames:
-            p = p + geom_text(aes(label=self.ID_col), vjust=1, hjust=1)
-        if inputs.linear:
-            p = p + stat_smooth(color="red", method="lm")
+        p = plt.plot(subdat[inputs.xvar], subdat[inputs.yvar])
+
         return p
 
 
